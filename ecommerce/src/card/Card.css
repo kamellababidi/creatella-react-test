@@ -6,7 +6,7 @@
     align-items: center;
     box-sizing:border-box;
     width: 15%;
-    height: 250px;
+    height: 300px;
     border: 1px solid black;
     border-radius: 20px;
     background-color: #f1cd8562;
@@ -21,8 +21,14 @@
 }
 
 .face {
-    font-size: 30px;
+    display: flex;
+    height: 70%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     color: orange;
+    word-break:break-all;
+
 }
 
 .face:hover,
@@ -32,9 +38,19 @@
 
 
 .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
+    height: 10%;
+    width: 100%;
 }
 
 .date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 15px;
+    height: 10%;
+    width: 100%;
 }
