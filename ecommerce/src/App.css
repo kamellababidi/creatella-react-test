@@ -21,3 +21,8 @@
 .App-link {
   color: #61dafb;
 }
+
+.loader {
+  display: block;
+  margin: 0 auto 0 auto;
+}
