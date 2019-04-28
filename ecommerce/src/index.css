@@ -12,3 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+header {
+  background-image: linear-gradient(rgba(247, 177, 28, 0.1), rgb(7, 7, 7, 0.1)), url("http://localhost:3000/ads/?r=' + Math.floor(Math.random()*1000) + '");
+}
+
+.header {
+  text-align: center;
+  font-size: 55px;
+}
+
+.desc {
+  text-align: center;
+  padding: 7px;
+}
+
+.ad {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

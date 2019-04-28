@@ -1,0 +1,40 @@
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing:border-box;
+    width: 15%;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #f1cd8562;
+    margin: 10px;
+    word-break:break-all;
+    cursor: pointer;
+}
+
+.card:hover,
+.card:active {
+    background-color: #b05d14;
+}
+
+.face {
+    font-size: 30px;
+    color: orange;
+}
+
+.face:hover,
+.face:active {
+    color: black;
+}
+
+
+.price {
+    font-size: 20px;
+}
+
+.date {
+    font-size: 15px;
+}
