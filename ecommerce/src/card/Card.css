@@ -14,6 +14,16 @@
     word-break:break-all;
     cursor: pointer;
 }
+@media only screen and (max-width: 1000px) {
+    .card {
+        width: 30%; 
+    }
+}
+@media only screen and (max-width: 650px) {
+    .card {
+        width: 40%; 
+    }
+}
 
 .card:hover,
 .card:active {
