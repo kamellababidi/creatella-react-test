@@ -3,6 +3,7 @@ import Card from './components/card/Card.js'
 import Spinner from './ui/Spinner.js'
 import './App.css';
 import {randomNumberExcept} from './helpers/random'
+import Sort from './components/select/Sort'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,13 +14,16 @@ class App extends React.Component {
       loader: true,
       loadMore: false,
       page: 1,
-      addsNumbers: []
+      addsNumbers: [],
+      sort: false,
+      selectedOption: null
     }
   }
 
   componentDidMount() {
     document.addEventListener('scroll', this.trackScrolling);
-    this.fetchData()
+    if (this.state.loader)
+      this.fetchData()
   }
 
   componentWillUnmount() {
@@ -43,7 +47,7 @@ class App extends React.Component {
 
   fetchData() {
     // fetch product from server
-    fetch(`http://localhost:3000/api/products?_page=${this.state.page}`)
+    fetch(`http://localhost:3000/api/products?_page=${this.state.page}&_sort=${this.state.selectedOption}`)
     .then(response => response.json())
     .then(data => {
       let items = this.state.items
@@ -59,7 +63,7 @@ class App extends React.Component {
           })
           // append add to list
           let list = document.getElementsByClassName('Container')[0]
-          var tag = '<img class="loader" src="http://localhost:3000/ads/?r=' + random + '"/>';
+          var tag = '<img class="add-img" src="http://localhost:3000/ads/?r=' + random + '"/>';
           var doc = new DOMParser().parseFromString(tag, "text/html")
           list.append(doc.body.children[0])
         }
@@ -69,9 +73,33 @@ class App extends React.Component {
     .catch(error => console.log(error));
   }
 
+  // sort items
+  sortItems(option) {
+    this.setState({
+      items: [],
+      page: 1,
+      sort: true,
+      loader: true,
+      addsNumbers: [],
+      selectedOption: option.value
+    }, () => this.fetchData() )
+    this.removeAdds()
+  }
+
+  // remove adds from DOM
+  removeAdds(){
+    let adds = document.getElementsByClassName('add-img')
+    for (var i = 0; i < adds.length; i++ ) {
+      adds[i].remove()
+    }
+  }
+
   render() {
     return (
       <div className='App'>
+        <Sort
+          sortItems={this.sortItems.bind(this)}
+        />
         <div className="Container">
           {
             this.state.items &&
@@ -97,7 +125,6 @@ class App extends React.Component {
             --------------------------  End Of Catalogue  --------------------------
           </div>
         }
-        
       </div>
     )
   }
