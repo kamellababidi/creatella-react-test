@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/card/Card.js'
 import Spinner from './ui/Spinner.js'
 import './App.css';
+import {randomNumberExcept} from './helpers/random'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class App extends React.Component {
       items: [],
       loader: true,
       loadMore: false,
-      page: 1
+      page: 1,
+      addsNumbers: []
     }
   }
 
@@ -45,12 +47,19 @@ class App extends React.Component {
     .then(response => response.json())
     .then(data => {
       let items = this.state.items
-      if (data.length === 0) {
+      if (data.length === 0) { // end of catalog
         document.removeEventListener('scroll', this.trackScrolling);
       } else {
+        // check after 20 item to append add 
         if (items.length !== 0 && items.length % 20 === 0) {
+          // getting unique random number fo add
+          let random = randomNumberExcept(this.state.addsNumbers)
+          this.setState({
+            addsNumbers: this.state.addsNumbers.concat(random)
+          })
+          // append add to list
           let list = document.getElementsByClassName('Container')[0]
-          var tag = '<img class="loader" src="http://localhost:3000/ads/?r=' + Math.floor(Math.random()*1000) + '"/>';
+          var tag = '<img class="loader" src="http://localhost:3000/ads/?r=' + random + '"/>';
           var doc = new DOMParser().parseFromString(tag, "text/html")
           list.append(doc.body.children[0])
         }
