@@ -31,13 +31,15 @@
 }
 
 .face {
-    display: flex;
-    height: 70%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    height: 1000px;
+    text-align: center;
+    align-self: center;
+    margin-top: 55px;
     color: orange;
+    overflow: hidden;
     word-break:break-all;
+    white-space: normal;
 
 }
 
